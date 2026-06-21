@@ -8,7 +8,7 @@ export function HabitFrom() {
         placeholder="New habit..."
       />
 
-      <Button>Add Habit</Button>
+      <Button className="py-2 px-5">Add Habit</Button>
     </form>
   );
 }
