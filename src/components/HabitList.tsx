@@ -7,10 +7,14 @@ import {
   startOfWeek,
 } from "date-fns";
 
-export function HabitList() {
-  const habits = [{ id: "1", name: "Drink water" }];
+export type Habit = { id: string; name: string; }
 
-  if (habits.length === 0) {
+type HabitListProps = {
+  habits: Habit[];
+}
+
+export function HabitList({ habits }: HabitListProps) {
+  if (habits?.length === 0) {
     return (
       <p className="text-zinc-500 text-center py-12">
         No habits added yet. Add one above to get started!
@@ -20,7 +24,7 @@ export function HabitList() {
 
   return (
     <div className="flex flex-col gap-3">
-      {habits.map((habit) => {
+      {habits?.map((habit) => {
         return <HabitItem key={habit.id} habit={habit} />;
       })}
     </div>
@@ -28,7 +32,7 @@ export function HabitList() {
 }
 
 type HabitItemProps = {
-  habit: { id: string; name: string };
+  habit: Habit;
 };
 
 function HabitItem({ habit }: HabitItemProps) {
