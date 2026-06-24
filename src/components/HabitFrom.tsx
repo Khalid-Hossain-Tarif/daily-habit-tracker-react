@@ -1,17 +1,15 @@
 import { useState, type SubmitEvent } from "react";
 import { Button } from "./Button";
+import { useHabits } from "../context/useHabits";
 
-type HabitFormProps = {
-  addHabit: (name: string) => void;
-}
-
-export function HabitFrom({ addHabit }: { HabitFormProps }) {
+export function HabitFrom() {
   const [name, setName] = useState("");
+  const { addHabit } = useHabits();
 
   function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
 
-    if(name.trim() === "") return;
+    if (name.trim() === "") return;
 
     setName("");
     addHabit(name);
@@ -26,7 +24,9 @@ export function HabitFrom({ addHabit }: { HabitFormProps }) {
         className="flex-1 rounded-lg bg-zinc-800 px-4 py-2 outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
       />
 
-      <Button disabled={name.trim() === ""} className="py-2 px-5">Add Habit</Button>
+      <Button disabled={name.trim() === ""} className="py-2 px-5">
+        Add Habit
+      </Button>
     </form>
   );
 }
