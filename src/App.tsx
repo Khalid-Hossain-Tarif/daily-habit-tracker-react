@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { Header } from "./components/Header";
 import { HabitFrom } from "./components/HabitFrom";
-import { HabitList, type Habit } from "./components/HabitList";
-import { isSameDay } from "date-fns";
+import { HabitList } from "./components/HabitList";
 import { HabitProvider } from "./context/HabitProvider";
 
 export default function App() {

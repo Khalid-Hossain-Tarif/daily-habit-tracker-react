@@ -4,6 +4,7 @@ import {
   eachDayOfInterval,
   endOfWeek,
   format,
+  isFuture,
   isSameDay,
   startOfWeek,
   subDays,
@@ -64,6 +65,7 @@ function HabitItem({ habit }: HabitItemProps) {
             <Button
               key={date.toISOString()}
               onClick={() => toggleHabit(habit.id, date)}
+              disabled={isFuture(date)}
               className="grow flex flex-col gap-1  items-center rounded-lg text-xs"
               variant={
                 habit.completions.some((d) => isSameDay(d, date))
@@ -82,8 +84,14 @@ function HabitItem({ habit }: HabitItemProps) {
 }
 
 function getStreak(completions: Date[]) {
+  if (completions.length === 0) return 0;
+
+  const latestCompletion = [...completions].sort(
+    (a, b) => b.getTime() - a.getTime(),
+  )[0];
+
   let streak = 0;
-  let date = new Date();
+  let date = new Date(latestCompletion);
 
   while (completions.some((c) => isSameDay(c, date))) {
     streak++;
