@@ -28,11 +28,11 @@ export function Button({
 function getVariantStyles(variant: Variant) {
   switch (variant) {
     case "primary":
-      return "bg-violet-600 hover:bg-violet-500";
+      return "bg-sky-600 hover:bg-sky-500";
     case "secondary":
       return "bg-zinc-700 hover:bg-zinc-600 text-zinc-400";
     case "destructive":
-      return "hover:bg-red-700 text-red-600 hover:text-red-200";
+      return "bg-zinc-700 hover:bg-red-700 text-red-500 hover:text-red-200";
     default:
       throw new Error(`Unknown variant: ${variant satisfies never}`);
   }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { parseISO } from "date-fns";
 
 export function useLocalStorage<T>(key: string, initialValue: T) {
   const [storedValue, setStoredValue] = useState<T>(() => {
@@ -25,7 +26,7 @@ function dateReviver(_key: string, value: unknown) {
     typeof value === "string" &&
     /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(value)
   ) {
-    return pasrseISO(value);
+    return parseISO(value);
   }
   return value;
 }
